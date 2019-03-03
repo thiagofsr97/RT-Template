@@ -28,6 +28,8 @@ bool Scene::intersect( const Ray &ray,
 
 void Scene::load( void ) 
 {
+
+    
 //     Assimp::Importer importer;
 //     const aiScene *scene_ =  importer.ReadFile( "model3.blend", 
 //         aiProcess_CalcTangentSpace       | 
