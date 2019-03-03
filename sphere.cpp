@@ -1,4 +1,5 @@
 #include "sphere.h"
+#include <assimp/Importer.hpp>
 
 Sphere::Sphere( void )
 {}

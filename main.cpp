@@ -14,12 +14,17 @@ int main( void )
                                 glm::vec3{ 0.0f, 1.0f,  0.0f },     // up
                                 glm::vec3{ 0.0f, 0.0f, -1.0f } };   // look at
 
-    PerspectiveCamera camera1{ glm::ivec2{ x_resolution, y_resolution },
-                              glm::vec3{ 2.5f, -3.0f,  -5.0f },     // position
+    PerspectiveCamera camera1{ 
+                              glm::ivec2{ x_resolution, y_resolution },
+                              glm::vec3{ 0.0f, 0.0f,  1.0f },     // position
                               glm::vec3{ 0.0f, 1.0f,  0.0f },     // up
                               glm::vec3{ 0.0f, 0.0f, -1.0f },
-                              (1),
-                              0.1 };    // look at
+                              -1.25f,
+                                1.25f, 
+                               -1.25f, 
+                                1.25f,
+                              (static_cast<float>(x_resolution)/y_resolution),
+                              45.0f};    
     Scene scene{};
     
     scene.load();
@@ -28,7 +33,7 @@ int main( void )
     glm::vec3 background_color{ 0.0f, 0.0f, 0.0f };
 
     // Set up the renderer.
-    RayTracer rt( camera,
+    RayTracer rt( camera1,
                   scene,
                   background_color,
                   rendering_buffer );
