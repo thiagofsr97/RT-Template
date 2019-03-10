@@ -10,7 +10,7 @@ class Triangle : public Primitive {
 public:
     Triangle( void );
 
-    Triangle( const glm::vec3 &v0, const glm::vec3 &v1, const glm::vec3 &v2);
+    Triangle( const glm::vec3 &v0, const glm::vec3 &v1, const glm::vec3 &v2, const glm::vec3 &color );
 
     bool intersect( const Ray &ray, IntersectionRecord &intersection_record) const; 
                     
@@ -18,6 +18,7 @@ public:
     glm::vec3 v0 = { 0.0f, 0.0f, 0.0f };
     glm::vec3 v1 = { 0.0f, 0.0f, 0.0f };
     glm::vec3 v2 = { 0.0f, 0.0f, 0.0f };
+    glm::vec3 color = { 0.0f, 0.0f, 0.0f };
 };
 
 #endif /* TRIANGLE_H_ */

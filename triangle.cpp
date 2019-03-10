@@ -6,10 +6,11 @@ Triangle::Triangle( void )
 {}
 
 Triangle::Triangle( const glm::vec3 &v0, const glm::vec3 &v1,
-                    const glm::vec3 &v2 ):
+                    const glm::vec3 &v2, const glm::vec3 &color ):
           v0{ v0 },
           v1{ v1 },
-          v2{ v2 }
+          v2{ v2 },
+          color{ color }
 {}
 
 bool Triangle::intersect( const Ray &ray,
@@ -52,6 +53,7 @@ bool Triangle::intersect( const Ray &ray,
         //std::cout << intersection_record.t_ << std::endl;
         intersection_record.position_ = ray.origin_ + intersection_record.t_ * ray.direction_;
         intersection_record.normal_ = glm::cross(AB, AC);
+        intersection_record.color_ = color;
         return true;
     }
     else {
