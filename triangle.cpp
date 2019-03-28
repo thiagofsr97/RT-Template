@@ -6,11 +6,21 @@ Triangle::Triangle( void )
 {}
 
 Triangle::Triangle( const glm::vec3 &v0, const glm::vec3 &v1,
-                    const glm::vec3 &v2, const glm::vec3 &color ):
+                    const glm::vec3 &v2, const glm::vec3 &color, const Material* material ):
+                    Primitive(material),
           v0{ v0 },
           v1{ v1 },
           v2{ v2 },
           color{ color }
+{}
+
+Triangle::Triangle( const glm::vec3 &v0, const glm::vec3 &v1,
+                    const glm::vec3 &v2, const glm::vec3 &color ):
+        Primitive(),
+        v0{ v0 },
+        v1{ v1 },
+        v2{ v2 },
+        color{ color }
 {}
 
 bool Triangle::intersect( const Ray &ray,

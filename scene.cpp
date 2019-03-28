@@ -19,7 +19,9 @@ bool Scene::intersect( const Ray &ray,
         if ( primitives_[primitive_id]->intersect( ray, tmp_intersection_record ) )
             if ( ( tmp_intersection_record.t_ < intersection_record.t_ ) && ( tmp_intersection_record.t_ > 0.0 ) )
             {
+                tmp_intersection_record.material = primitives_[primitive_id]->getMaterial();
                 intersection_record = tmp_intersection_record;
+
                 intersection_result = true; // the ray intersects a primitive!
             }
 
@@ -29,10 +31,13 @@ bool Scene::intersect( const Ray &ray,
 void Scene::load( void ) 
 {
 
-    Importer importer( "start" );
-    importer.load( &primitives_ );
-    
-//    primitives_.push_back( Primitive::PrimitiveUniquePtr( new Sphere{ glm::vec3{  0.0f, 0.0f,  0.0f }, 0.2f } ) );
+//    Importer importer( "start" );
+//    importer.load( &primitives_ );
+
+    primitives_.push_back( Primitive::PrimitiveUniquePtr( new Sphere{ glm::vec3{  0.0f, 0.0f,  0.0f }, 0.2f, glm::vec3{200.0f/255,200.0f/255,200.0f/255}, new Material(glm::vec3{200.0f/255,200.0f/255,200.0f/255}, 25.5f) } ) );
+    primitives_.push_back( Primitive::PrimitiveUniquePtr( new Sphere{ glm::vec3{  0.0f, 2.0f,  -1.0f }, 0.5f, glm::vec3{200.0f/255,200.0f/255,200.0f/255}, new Material(glm::vec3{200.0f/255,200.0f/255,200.0f/255}, 25.5f) } ) );
+//    primitives_.push_back( Primitive::PrimitiveUniquePtr( new Sphere{ glm::vec3{  0.0f, 4.0f,  0.0f }, 0.5f, glm::vec3{200.0f/255,200.0f/255,200.0f/255}, new Material(glm::vec3{200.0f/255,200.0f/255,200.0f/255}, 25.5f) } ) );
+//    primitives_.push_back( Primitive::PrimitiveUniquePtr( new Sphere{ glm::vec3{  2.0f, 0.0f,  0.0f }, 0.5f, glm::vec3{200.0f/255,200.0f/255,200.0f/255}, new Material(glm::vec3{200.0f/255,200.0f/255,200.0f/255}, 0.0f) } ) );
 //    primitives_.push_back( Primitive::PrimitiveUniquePtr( new Sphere{ glm::vec3{ -0.5f, 0.0f, -1.0f }, 0.2f } ) );
 //    primitives_.push_back( Primitive::PrimitiveUniquePtr( new Sphere{ glm::vec3{  0.0f,-0.5f, -2.0f }, 0.2f } ) );
 //    primitives_.push_back( Primitive::PrimitiveUniquePtr( new Sphere{ glm::vec3{  0.0f, 0.5f, -3.0f }, 0.2f } ) );

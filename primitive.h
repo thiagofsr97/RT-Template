@@ -14,10 +14,16 @@ public:
 
     Primitive( void );
 
+    Primitive(const Material* material);
+
+    const Material* getMaterial();
+
     virtual ~Primitive( void );
 
     virtual bool intersect( const Ray &ray,
                             IntersectionRecord &intersection_record ) const = 0;
+private:
+    const Material* material;
 };
 
 #endif /* PRIMITIVE_H_ */

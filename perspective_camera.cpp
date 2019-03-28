@@ -34,14 +34,10 @@ Ray PerspectiveCamera::getWorldSpaceRay( const glm::vec2 &pixel_coord ) const
     float height = max_y_ - min_y_;
 
     float x_value = ((witdh * pixel_coord[0]/static_cast< float >(resolution_[0])) - (witdh/2) ) * aspect_ * tan(fov_degrees_ * 0.5f * PerspectiveCamera::kDegreesToRadians_);
+//    float x_value = ((8 * pixel_coord[0]/static_cast< float >(resolution_[0])) - 4 ) * aspect_ * tan(fov_degrees_ * 0.5f * PerspectiveCamera::kDegreesToRadians_);
     float y_value = ((witdh/2) -  (witdh*(pixel_coord[1]/static_cast< float >(resolution_[1])))) * tan(fov_degrees_ * 0.5f * PerspectiveCamera::kDegreesToRadians_);
-    // float y_value = ((2*(pixel_coord[1]/static_cast< float >(resolution_[1]))) - 1) * tan(fov_degrees_ * 0.5f * PerspectiveCamera::kDegreesToRadians_);
+//    float y_value = (4 -  (8*(pixel_coord[1]/static_cast< float >(resolution_[1])))) * tan(fov_degrees_ * 0.5f * PerspectiveCamera::kDegreesToRadians_);
 
-    // glm::vec3 ray_local_dir{  sample_coord.x * aspect_ * tan ( fov_degrees_ * 0.5f * PerspectiveCamera::kDegreesToRadians_ ),
-    //                           -sample_coord.y * tan ( fov_degrees_ * 0.5f * PerspectiveCamera::kDegreesToRadians_ ),
-    //
-    
-    // std::cout << "X value " << x_value << " Y value " << y_value << std::endl;
     glm::vec3 ray_local_dir{ x_value , y_value , -1.0f};
 
     return Ray{ position_, glm::normalize( onb_.getBasisMatrix() * ray_local_dir ) };

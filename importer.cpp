@@ -9,7 +9,7 @@ Importer::~Importer( void )
 
 void Importer::load( std::vector < Primitive::PrimitiveUniquePtr > *primitives_ )
 {
-    const aiScene *scene_ =  importer.ReadFile( "models/model9.blend",
+    const aiScene *scene_ =  importer.ReadFile( "models/model8.blend",
             aiProcess_CalcTangentSpace       |
             aiProcess_Triangulate            |
             aiProcess_JoinIdenticalVertices  |
@@ -21,11 +21,14 @@ void Importer::load( std::vector < Primitive::PrimitiveUniquePtr > *primitives_ 
         return;
     }
 
+    int number_of_primitives = 0;
+
     for( int i = 0; i < scene_->mNumMeshes; i++ )
     {
         auto vertices = scene_->mMeshes[i]->mVertices;
         for( int j = 0; j < scene_->mMeshes[i]->mNumFaces; j++ )
-        {
+        { 
+            number_of_primitives++;
             auto faces = scene_->mMeshes[i]->mFaces[j];
             R = rand() % 255;
             G = rand() % 255;
@@ -45,6 +48,9 @@ void Importer::load( std::vector < Primitive::PrimitiveUniquePtr > *primitives_ 
 //            std::cout << scene_->mMeshes[i]->mFaces[j].mIndices[2] << std::endl;
 
         }
+
     }
+
+    std::cout << "Number of primitives loaded: " << number_of_primitives << std::endl;
 }
 

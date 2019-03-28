@@ -1,14 +1,17 @@
 #include "main.h"
+#include "pathtracer.h"
 
 int main( void )
 {
     unsigned int x_resolution = 512;
     unsigned int y_resolution = 512;
+    clock_t begin = std::clock();
+    float camera_size = 5.0f;
 
-    OrthographicCamera camera{ -1.25f,
-                                1.25f, 
-                               -1.25f, 
-                                1.25f,
+    OrthographicCamera camera{ -camera_size,
+                                camera_size,
+                               -camera_size,
+                                camera_size,
                                 glm::ivec2{ x_resolution, y_resolution }, 
                                 glm::vec3{ 0.0f, 0.0f,  1.0f },     // position
                                 glm::vec3{ 0.0f, 1.0f,  0.0f },     // up
@@ -19,12 +22,12 @@ int main( void )
                               glm::vec3{ 0.0f, 0.0f,  1.0f },     // position
                               glm::vec3{ 0.0f, 1.0f,  0.0f },     // up
                               glm::vec3{ 0.0f, 0.0f, -1.0f },
-                              -1.25f,
-                                1.25f, 
-                               -1.25f, 
-                                1.25f,
+                              -camera_size,
+                                camera_size,
+                               -camera_size,
+                                camera_size,
                               (static_cast<float>(x_resolution)/y_resolution),
-                              45.0f};    
+                              45.0f};
     Scene scene{};
     
     scene.load();
@@ -38,8 +41,13 @@ int main( void )
                   background_color,
                   rendering_buffer );
 
-    rt.integrate(); // Renders the final image.
+//    PathTracer pt(camera1,scene, background_color, rendering_buffer, 100, 5);
 
+//    rt.integrate(); // Renders the final image.
+    rt.integrate();
+    clock_t end = clock();
+    double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
+    std::cout << "The elapsed to load and render the model was " << elapsed_secs << " seconds." << std::endl; 
     // Save the rendered image to a .ppm file.
     rendering_buffer.save( "output_image.ppm" );
 

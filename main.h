@@ -7,6 +7,7 @@
 #include "scene.h"
 #include "buffer.h"
 #include "raytracer.h"
+#include <ctime>
 
 #endif /* MAIN_H_ */
 
