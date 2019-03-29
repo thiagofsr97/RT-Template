@@ -9,7 +9,7 @@ Importer::~Importer( void )
 
 void Importer::load( std::vector < Primitive::PrimitiveUniquePtr > *primitives_ )
 {
-    const aiScene *scene_ =  importer.ReadFile( "models/model8.blend",
+    const aiScene *scene_ =  importer.ReadFile( "models/model10.blend",
             aiProcess_CalcTangentSpace       |
             aiProcess_Triangulate            |
             aiProcess_JoinIdenticalVertices  |
@@ -37,7 +37,8 @@ void Importer::load( std::vector < Primitive::PrimitiveUniquePtr > *primitives_ 
                     new Triangle{ glm::vec3{vertices[faces.mIndices[0]][0], vertices[faces.mIndices[0]][1], vertices[faces.mIndices[0]][2]},
                                   glm::vec3{vertices[faces.mIndices[1]][0], vertices[faces.mIndices[1]][1], vertices[faces.mIndices[1]][2]},
                                   glm::vec3{vertices[faces.mIndices[2]][0], vertices[faces.mIndices[2]][1], vertices[faces.mIndices[2]][2]},
-                                  glm::vec3{ R / 255.0, G / 255.0, B / 255.0 } } ) );
+                                  glm::vec3{10.0f/255,100.0f/255,10.0f/255},
+                                  new Material(glm::vec3{0.0f/255,100.0f/255,0.0f/255}, 0.0f) } ) );
 
 //            std::cout << vertices[faces.mIndices[0]][0] << " " << vertices[faces.mIndices[0]][1] << " " <<  vertices[faces.mIndices[0]][2] << std::endl;
 //            std::cout << vertices[faces.mIndices[1]][0] << " " << vertices[faces.mIndices[1]][1] << " " <<  vertices[faces.mIndices[1]][2] << std::endl;

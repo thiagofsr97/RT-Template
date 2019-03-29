@@ -41,10 +41,11 @@ int main( void )
                   background_color,
                   rendering_buffer );
 
-//    PathTracer pt(camera1,scene, background_color, rendering_buffer, 100, 5);
+    PathTracer pt(camera1,scene, background_color, rendering_buffer, 1000, 5);
+    pt.integrate();
 
 //    rt.integrate(); // Renders the final image.
-    rt.integrate();
+//    rt.integrate();
     clock_t end = clock();
     double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
     std::cout << "The elapsed to load and render the model was " << elapsed_secs << " seconds." << std::endl; 

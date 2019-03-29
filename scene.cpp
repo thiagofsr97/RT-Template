@@ -31,11 +31,86 @@ bool Scene::intersect( const Ray &ray,
 void Scene::load( void ) 
 {
 
-//    Importer importer( "start" );
-//    importer.load( &primitives_ );
+    Importer importer( "start" );
+    importer.load( &primitives_ );
 
-    primitives_.push_back( Primitive::PrimitiveUniquePtr( new Sphere{ glm::vec3{  0.0f, 0.0f,  0.0f }, 0.2f, glm::vec3{200.0f/255,200.0f/255,200.0f/255}, new Material(glm::vec3{200.0f/255,200.0f/255,200.0f/255}, 25.5f) } ) );
-    primitives_.push_back( Primitive::PrimitiveUniquePtr( new Sphere{ glm::vec3{  0.0f, 2.0f,  -1.0f }, 0.5f, glm::vec3{200.0f/255,200.0f/255,200.0f/255}, new Material(glm::vec3{200.0f/255,200.0f/255,200.0f/255}, 25.5f) } ) );
+    //1
+    primitives_.push_back( Primitive::PrimitiveUniquePtr( new Sphere{ glm::vec3{  0.0f, 0.5f,  -0.8f }, 0.2f, glm::vec3{200.0f/255,200.0f/255,200.0f/255}, new Material(glm::vec3{200.0f/255,200.0f/255,200.0f/255}, 100.0f) } ) );
+//    primitives_.push_back(Primitive::PrimitiveUniquePtr(
+//            new Triangle{ glm::vec3{ -0.84770f, -0.67362f, -0.55652f },
+//                          glm::vec3{ -0.43468f, -0.67362f, -1.83889f },
+//                          glm::vec3{ -0.84770f, 0.67362f, -0.55652f },
+//                          glm::vec3{10.0f/255,100.0f/255,10.0f/255},
+//                          new Material(glm::vec3{0.0f/255,100.0f/255,0.0f/255}, 0.0f) } ) );
+//
+//    primitives_.push_back( Primitive::PrimitiveUniquePtr(
+//            new Triangle{ glm::vec3{ -0.84770f, 0.67362f, -0.55652f },
+//                          glm::vec3{ -0.43468f, 0.67362f, -1.83889f },
+//                          glm::vec3{ -0.43468f, -0.67362f, -1.83889f },
+//                          glm::vec3{10.0f/255,100.0f/255,10.0f/255},
+//                          new Material(glm::vec3{0.0f/255,100.0f/255,0.0f/255}, 0.0f) } ) );
+//
+//    //2
+//    primitives_.push_back( Primitive::PrimitiveUniquePtr(
+//            new Triangle{ glm::vec3{ -0.84770f, -0.67362f, -0.55652f },
+//                          glm::vec3{ -0.43468f, -0.67362f, -1.83889f },
+//                          glm::vec3{ 0.43468f, -0.67362f, -0.14350f },
+//                          glm::vec3{10.0f/255,100.0f/255,10.0f/255},
+//                          new Material(glm::vec3{0.0f/255,100.0f/255,0.0f/255}, 0.0f) } ) );
+//
+//    primitives_.push_back( Primitive::PrimitiveUniquePtr(
+//            new Triangle{ glm::vec3{ -0.43468f, -0.67362f, -1.83889f },
+//                          glm::vec3{ 0.43468f, -0.67362f, -0.14350f },
+//                          glm::vec3{ 0.84770f, -0.67362f, -1.42587f },
+//                          glm::vec3{10.0f/255,100.0f/255,10.0f/255},
+//                          new Material(glm::vec3{0.0f/255,100.0f/255,0.0f/255}, 0.0f) } ) );
+//
+//    //3
+//    primitives_.push_back( Primitive::PrimitiveUniquePtr(
+//            new Triangle{ glm::vec3{ 0.43468f, 0.67362f, -0.14350f },
+//                          glm::vec3{ 0.84770f, -0.67362f, -1.42587f },
+//                          glm::vec3{ 0.43468f, -0.67362f, -0.14350f },
+//                          glm::vec3{10.0f/255,100.0f/255,10.0f/255},
+//                          new Material(glm::vec3{0.0f/255,100.0f/255,0.0f/255}, 0.0f) } ) );
+//
+//    primitives_.push_back( Primitive::PrimitiveUniquePtr(
+//            new Triangle{ glm::vec3{ 0.84770f, -0.67362f, -1.42587f },
+//                          glm::vec3{ 0.43468f, 0.67362f, -0.14350f },
+//                          glm::vec3{ 0.84770f, 0.67362f, -1.42587f },
+//                          glm::vec3{10.0f/255,100.0f/255,10.0f/255},
+//                          new Material(glm::vec3{0.0f/255,100.0f/255,0.0f/255}, 0.0f) } ) );
+//
+//    //4
+//    primitives_.push_back( Primitive::PrimitiveUniquePtr(
+//            new Triangle{ glm::vec3{ 0.43468f, 0.67362f, -0.14350f },
+//                          glm::vec3{ 0.84770f, 0.67362f, -1.42587f },
+//                          glm::vec3{ -0.84770f, 0.67362f, -0.55652f },
+//                          glm::vec3{10.0f/255,100.0f/255,10.0f/255},
+//                          new Material(glm::vec3{0.0f/255,100.0f/255,0.0f/255}, 0.0f) } ) );
+//
+//    primitives_.push_back( Primitive::PrimitiveUniquePtr(
+//            new Triangle{ glm::vec3{ -0.43468f, 0.67362f, -1.83889f },
+//                          glm::vec3{ -0.84770f, 0.67362f, -0.55652f },
+//                          glm::vec3{ 0.84770f, 0.67362f, -1.42587f },
+//                          glm::vec3{10.0f/255,100.0f/255,10.0f/255},
+//                          new Material(glm::vec3{0.0f/255,100.0f/255,0.0f/255}, 0.0f) } ) );
+//
+//    //5
+//    primitives_.push_back( Primitive::PrimitiveUniquePtr(
+//            new Triangle{ glm::vec3{ -0.43468f, 0.67362f, -1.83889f },
+//                          glm::vec3{ 0.84770f, 0.67362f, -1.42587f },
+//                          glm::vec3{ 0.84770f, -0.67362f, -1.42587f },
+//                          glm::vec3{10.0f/255,100.0f/255,10.0f/255},
+//                          new Material(glm::vec3{0.0f/255,100.0f/255,0.0f/255}, 0.0f) } ) );
+//
+//    primitives_.push_back( Primitive::PrimitiveUniquePtr(
+//            new Triangle{ glm::vec3{ -0.43468f, 0.67362f, -1.83889f },
+//                          glm::vec3{ 0.84770f, -0.67362f, -1.42587f },
+//                          glm::vec3{ -0.43468f, -0.67362f, -1.83889f },
+//                          glm::vec3{10.0f/255,100.0f/255,10.0f/255},
+//                          new Material(glm::vec3{0.0f/255,100.0f/255,0.0f/255}, 0.0f) } ) );
+
+//    primitives_.push_back( Primitive::PrimitiveUniquePtr( new Sphere{ glm::vec3{  0.0f, 2.0f,  -1.0f }, 0.5f, glm::vec3{100.0f/255,200.0f/255,50.0f/255}, new Material(glm::vec3{0.0f/255,200.0f/255,200.0f/255}, 0.0f) } ) );
 //    primitives_.push_back( Primitive::PrimitiveUniquePtr( new Sphere{ glm::vec3{  0.0f, 4.0f,  0.0f }, 0.5f, glm::vec3{200.0f/255,200.0f/255,200.0f/255}, new Material(glm::vec3{200.0f/255,200.0f/255,200.0f/255}, 25.5f) } ) );
 //    primitives_.push_back( Primitive::PrimitiveUniquePtr( new Sphere{ glm::vec3{  2.0f, 0.0f,  0.0f }, 0.5f, glm::vec3{200.0f/255,200.0f/255,200.0f/255}, new Material(glm::vec3{200.0f/255,200.0f/255,200.0f/255}, 0.0f) } ) );
 //    primitives_.push_back( Primitive::PrimitiveUniquePtr( new Sphere{ glm::vec3{ -0.5f, 0.0f, -1.0f }, 0.2f } ) );
