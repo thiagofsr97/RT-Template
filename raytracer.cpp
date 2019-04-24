@@ -12,21 +12,22 @@ RayTracer::RayTracer( Camera &camera,
 
 void RayTracer::integrate( void )
 {
-    IntersectionRecord intersection_record;
 
     // Image space origin (i.e. x = 0 and y = 0) at the top left corner.
 
     // Loops over image rows
+#pragma omp parallel for schedule( dynamic, 1 )
     for ( std::size_t y = 0; y < buffer_.v_resolution_; y++ )
     {
-        std::stringstream progress_stream;
-        progress_stream << "\r  progress .........................: "
-                        << std::fixed << std::setw( 6 )
-                        << std::setprecision( 2 )
-                        << 100.0 * y / ( buffer_.v_resolution_ - 1 )
-                        << "%";
-
-        std::clog << progress_stream.str();
+        IntersectionRecord intersection_record;
+//        std::stringstream progress_stream;
+//        progress_stream << "\r  progress .........................: "
+//                        << std::fixed << std::setw( 6 )
+//                        << std::setprecision( 2 )
+//                        << 100.0 * y / ( buffer_.v_resolution_ - 1 )
+//                        << "%";
+//
+//        std::clog << progress_stream.str();
 
         // Loops over image columns
         for ( std::size_t x = 0; x < buffer_.h_resolution_; x++ )

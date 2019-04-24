@@ -62,7 +62,7 @@ bool Triangle::intersect( const Ray &ray,
         intersection_record.t_ = glm::dot(AC, q_point) * det_invert;
         //std::cout << intersection_record.t_ << std::endl;
         intersection_record.position_ = ray.origin_ + intersection_record.t_ * ray.direction_;
-        intersection_record.normal_ = glm::cross(AB, AC);
+        intersection_record.normal_ = glm::normalize(glm::cross(AB, AC));
         intersection_record.color_ = color;
         return true;
     }
@@ -105,7 +105,8 @@ bool Triangle::intersect( const Ray &ray,
 
         intersection_record.t_ = t;
         intersection_record.position_ = ray.origin_ + intersection_record.t_ * ray.direction_;
-        intersection_record.normal_ = glm::cross( v1 - v0, v2 - v0);
+        intersection_record.normal_ = glm::normalize(glm::cross( v1 - v0, v2 - v0));
+        intersection_record.color_ = color;
         return true;
     }
 }

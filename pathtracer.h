@@ -11,7 +11,7 @@
 #include <chrono>;
 #include <functional>
 
-//constexpr auto PI = 3.14159265359f;
+constexpr auto PI_ = 3.14159265359f;
 class PathTracer{
 
 public:
@@ -30,8 +30,6 @@ private:
     glm::vec3 LightResultedRecursive(const Ray& ray, int current_depth);
 
     //properties
-
-    std::vector< glm::vec2 > samples_;
 
     int number_of_samples_;
 

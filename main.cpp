@@ -1,4 +1,5 @@
 #include "main.h"
+#include "time.h"
 #include "pathtracer.h"
 
 int main( void )
@@ -6,7 +7,9 @@ int main( void )
     unsigned int x_resolution = 512;
     unsigned int y_resolution = 512;
     clock_t begin = std::clock();
-    float camera_size = 5.0f;
+    time_t inicio, fim;
+    inicio = time(NULL);
+    float camera_size = 1.25f;
 
     OrthographicCamera camera{ -camera_size,
                                 camera_size,
@@ -14,13 +17,13 @@ int main( void )
                                 camera_size,
                                 glm::ivec2{ x_resolution, y_resolution }, 
                                 glm::vec3{ 0.0f, 0.0f,  1.0f },     // position
-                                glm::vec3{ 0.0f, 1.0f,  0.0f },     // up
+                                glm::vec3{ 0.0f, 0.0f,  0.0f },     // up
                                 glm::vec3{ 0.0f, 0.0f, -1.0f } };   // look at
 
     PerspectiveCamera camera1{ 
                               glm::ivec2{ x_resolution, y_resolution },
-                              glm::vec3{ 0.0f, 0.0f,  1.0f },     // position
-                              glm::vec3{ 0.0f, 1.0f,  0.0f },     // up
+                              glm::vec3{ 0.0f, 0.0f,  4.0f },     // position
+                              glm::vec3{ 0.0f, -1.0f,  0.0f },     // up
                               glm::vec3{ 0.0f, 0.0f, -1.0f },
                               -camera_size,
                                 camera_size,
@@ -42,10 +45,12 @@ int main( void )
                   rendering_buffer );
 
     PathTracer pt(camera1,scene, background_color, rendering_buffer, 1000, 5);
+    //rt.integrate();
     pt.integrate();
-
-//    rt.integrate(); // Renders the final image.
-//    rt.integrate();
+//
+ //   rt.integrate(); // Renders the final image.
+	fim = time(NULL);
+	fprintf(stdout, "O tempo de execucao em segundos é %f\n", difftime(fim, inicio));
     clock_t end = clock();
     double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
     std::cout << "The elapsed to load and render the model was " << elapsed_secs << " seconds." << std::endl; 
